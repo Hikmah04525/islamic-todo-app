@@ -1,0 +1,28 @@
+.task-card {
+    border: 2px solid #1e5631;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f9fff9;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    text-align: left;
+    width: 250px;
+    transition: transform 0.2s ease;
+}
+
+.task-card:hover {
+    transform: scale(1.05);
+    background-color: #eaffea;
+}
+
+.task-card h2 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #2e7d32;
+}
+
+.task-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
