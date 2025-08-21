@@ -3,6 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* General page layout fix */
+.page-container {
+  padding: 140px 20px 20px; /* pushes content below fixed navbar */
+  text-align: center;
+}
 
 body {
   font-family: Arial, sans-serif;
@@ -64,9 +69,11 @@ body {
 }
 
 /* TaskCard styles */
+
+
 .tasks-container {
   text-align: center;
-  padding: 20px;
+  padding: 140px 20px 20px; /* ⬅️ top padding pushes it below navbar */
 }
 
 .task-list {
@@ -75,4 +82,32 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 20px;
+}
+
+/* Style add-task form */
+.add-task {
+  margin: 20px auto;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.add-task input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-task button {
+  padding: 8px 14px;
+  border: none;
+  background-color: #2e7d32;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-task button:hover {
+  background-color: #1b5e20;
 }

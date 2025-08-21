@@ -1,6 +1,6 @@
 function About() {
     return (
-    <div className="homepage">
+    <div className="page-container">
         <h1>About This App</h1>
     </div>
     );
