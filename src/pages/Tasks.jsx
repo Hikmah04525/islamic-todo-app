@@ -4,13 +4,14 @@ import TaskCard from "../components/TaskCard";
 function Tasks() {
   const [tasks, setTasks] = useState([
     { id: 1, title: "Read Surah Al-Kahf", dueDate: "Friday", completed: false },
-    { id: 2, title: "Finish React Homework", dueDate: "Monday", completed: false },
+    { id: 2, title: "Attend React class", dueDate: "Monday", completed: false },
+    { id: 3, title: "Shopping", dueDate: "Saturday", completed: false },
+    { id: 4, title: "Azkar", dueDate: "Everyday", completed: false },
   ]);
 
   const [newTitle, setNewTitle] = useState("");
   const [newDate, setNewDate] = useState("");
 
-  // ✅ Place toggleTask here, inside the component
   const toggleTask = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -34,8 +35,11 @@ function Tasks() {
     setNewDate("");
   };
 
+  // ✅ Check if all tasks are completed
+  const allCompleted = tasks.length > 0 && tasks.every((task) => task.completed);
+
   return (
-    <div className=" page-container tasks-container">
+    <div className="page-container tasks-container">
       <h1>My Tasks</h1>
 
       {/* Add new task form */}
@@ -63,12 +67,20 @@ function Tasks() {
             title={task.title}
             dueDate={task.dueDate}
             completed={task.completed}
-            onToggle={() => toggleTask(task.id)} // ✅ pass toggle handler
+            onToggle={() => toggleTask(task.id)}
           />
         ))}
       </div>
+
+      {/* ✅ Motivational message */}
+      {allCompleted && (
+        <p style={{ marginTop: "20px", fontSize: "18px", color: "green" }}>
+          🌟 Keep up the good work masha allah!
+        </p>
+      )}
     </div>
   );
 }
 
 export default Tasks;
+
