@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TaskCard from "../components/TaskCard";
-import Quote from "../components/Ayah"; 
+import Ayah from "../components/Ayah";
 
 function Tasks() {
-  const [tasks, setTasks] = useState([]); // Start with an empty array
+  // Load tasks from localStorage on app start
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
   const [newTitle, setNewTitle] = useState("");
   const [newDate, setNewDate] = useState("");
 
-  // ✅ Toggle completion
+  // Save tasks to localStorage whenever tasks change
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  // Toggle completion
   const toggleTask = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -16,7 +26,7 @@ function Tasks() {
     );
   };
 
-  // ✅ Add new task
+  // Add new task
   const addTask = () => {
     if (newTitle.trim() === "" || newDate.trim() === "") return;
 
@@ -32,17 +42,17 @@ function Tasks() {
     setNewDate("");
   };
 
-  // ✅ Check if all tasks are completed
+  // check if all tasks are completed
   const allCompleted = tasks.length > 0 && tasks.every((task) => task.completed);
 
   return (
     <div className="page-container tasks-container">
       <h1>My Tasks</h1>
 
-      {/* ✅ Daily quran verse */}
-      <Quote />
+      {/* Week 5 Quote */}
+      <Ayah />
 
-      {/* Add new task  */}
+      {/* Add new task form */}
       <div className="add-task">
         <input
           type="text"
@@ -60,9 +70,17 @@ function Tasks() {
       </div>
 
       {/* Task list */}
-      <div className="task-list">
+      <div
+        className="task-list"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "20px",
+        }}
+      >
         {tasks.length === 0 ? (
-          <p style={{ color: "#777", marginTop: "20px" }}>
+          <p style={{ color: "#777", fontSize: "18px", textAlign: "center" }}>
             No tasks yet. Add your first one! 
           </p>
         ) : (
@@ -78,10 +96,10 @@ function Tasks() {
         )}
       </div>
 
-      {/* ✅ Motivational message */}
+      {/* Motivational message */}
       {allCompleted && (
         <p style={{ marginTop: "20px", fontSize: "18px", color: "green" }}>
-          Keep up the good work masha allah!
+            Keep up the good work masha allah!
         </p>
       )}
     </div>
