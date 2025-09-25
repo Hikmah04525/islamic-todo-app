@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./Ayah.css";
 
 function Ayah() {
   const [ayah, setAyah] = useState(null);
@@ -33,21 +32,27 @@ function Ayah() {
     }, []);
 
     return (
-    <div className="ayah-container">
-        {loading ? (
-        <div className="spinner"></div>
-        ) : (
-        <>
-            <p className="ayah">📖 {ayah.text}</p>
-            <p className="surah">
-            — {ayah.surah.englishName} (Surah {ayah.surah.number})
-            </p>
-            <button onClick={fetchRandomAyah} className="ayah-btn">
-            Get Random Ayah
-            </button>
-        </>
-        )}
-    </div>
+    <div className="my-5 p-5 bg-gray-50 border-l-4 border-green-600 rounded-lg text-center">
+  {loading ? (
+    <div className="w-6 h-6 border-4 border-gray-200 border-t-green-600 rounded-full animate-spin mx-auto"></div>
+  ) : (
+    <>
+      <p className="text-lg text-gray-700 leading-relaxed mb-3">
+        📖 {ayah.text}
+      </p>
+      <p className="text-sm font-bold text-gray-600 mb-4">
+        — {ayah.surah.englishName} (Surah {ayah.surah.number})
+      </p>
+      <button
+        onClick={fetchRandomAyah}
+        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300"
+      >
+        Get Random Ayah
+      </button>
+    </>
+  )}
+</div>
+
     );
 }
 
