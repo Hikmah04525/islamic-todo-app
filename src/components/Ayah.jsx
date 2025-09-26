@@ -32,7 +32,7 @@ function Ayah() {
     }, []);
 
     return (
-    <div className="my-5 p-5 bg-gray-50 border-l-4 border-green-600 rounded-lg text-center">
+    <div className="my-5 p-5 bg-gray-50 border-l-4 border-green-600 rounded-lg text-center max-w-2xl mx-auto">
   {loading ? (
     <div className="w-6 h-6 border-4 border-gray-200 border-t-green-600 rounded-full animate-spin mx-auto"></div>
   ) : (

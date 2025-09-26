@@ -4,53 +4,53 @@ import TaskCard from "../components/TaskCard";
 function Incomplete() {
     const [tasks, setTasks] = useState([]);
 
-  // Load tasks from localStorage
     useEffect(() => {
     const savedTasks = localStorage.getItem("tasks");
     if (savedTasks) setTasks(JSON.parse(savedTasks));
     }, []);
 
-  // Filter only incomplete tasks
     const incompleteTasks = tasks.filter((task) => !task.completed);
 
-    const toggleTask = (index) => {
-    const updated = [...tasks];
-    updated[index].completed = !updated[index].completed;
+    const toggleTask = (id) => {
+    const updated = tasks.map((t) =>
+        t.id === id ? { ...t, completed: !t.completed } : t
+    );
     setTasks(updated);
     localStorage.setItem("tasks", JSON.stringify(updated));
     };
 
-    const updateTask = (index, updatedTask) => {
-    const updated = [...tasks];
-    updated[index] = { ...updated[index], ...updatedTask };
+    const updateTask = (id, updatedTask) => {
+    const updated = tasks.map((t) =>
+        t.id === id ? { ...t, ...updatedTask } : t
+    );
     setTasks(updated);
     localStorage.setItem("tasks", JSON.stringify(updated));
     };
 
-    const deleteTask = (index) => {
-    const updated = tasks.filter((_, i) => i !== index);
+    const deleteTask = (id) => {
+    const updated = tasks.filter((t) => t.id !== id);
     setTasks(updated);
     localStorage.setItem("tasks", JSON.stringify(updated));
     };
 
     return (
-    <div className="page-container flex flex-col items-center justify-center min-h-screen px-4">
-        <h1 className="text-3xl font-bold text-red-700 mb-6 text-center">
-            Incompleted Tasks
+    <div className="min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 py-8 overflow-auto">
+        <h1 className="text-2xl sm:text-3xl font-bold text-red-700 mb-6 text-center">
+        Incompleted Tasks
         </h1>
 
-        {incompleteTasks.length > 0 ? (
-        <div className="w-full max-w-xl grid gap-4">
-            {incompleteTasks.map((task, index) => (
+    {incompleteTasks.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {incompleteTasks.map((task) => (
             <TaskCard
-                key={index}
+                key={task.id}
                 title={task.title}
                 dueDate={task.dueDate}
                 priority={task.priority}
                 completed={task.completed}
-                onToggle={() => toggleTask(index)}
-                onUpdate={(updatedTask) => updateTask(index, updatedTask)}
-                onDelete={() => deleteTask(index)}
+                onToggle={() => toggleTask(task.id)}
+                onUpdate={(updatedTask) => updateTask(task.id, updatedTask)}
+                onDelete={() => deleteTask(task.id)}
             />
             ))}
         </div>

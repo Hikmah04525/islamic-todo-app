@@ -26,28 +26,28 @@ function TaskCard({ title, dueDate, priority, completed, onToggle, onUpdate, onD
 
   return (
     <div
-      className={`rounded-xl p-5 shadow-md text-center transition ${
-        completed
-          ? "bg-green-100 line-through text-gray-500"
-          : "bg-white hover:shadow-lg"
-      }`}
+      className={`rounded-xl p-5 shadow-md transition text-center flex flex-col justify-between
+        ${completed ? "bg-green-100 line-through text-gray-500" : "bg-white hover:shadow-lg"}
+      `}
     >
       {isEditing ? (
         <div className="flex flex-col gap-2">
           <input
             value={editTitle}
             onChange={(e) => setEditTitle(e.target.value)}
-            className="border border-gray-300 rounded-lg px-3 py-1 outline-none"
+            placeholder="Task title"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           <input
+            type="date"
             value={editDate}
             onChange={(e) => setEditDate(e.target.value)}
-            className="border border-gray-300 rounded-lg px-3 py-1 outline-none"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           <select
             value={editPriority}
             onChange={(e) => setEditPriority(e.target.value)}
-            className="border border-gray-300 rounded-lg px-3 py-1 outline-none"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
@@ -56,28 +56,26 @@ function TaskCard({ title, dueDate, priority, completed, onToggle, onUpdate, onD
         </div>
       ) : (
         <>
-          <h2 className="text-xl font-semibold mb-2">{title}</h2>
-          <p className="text-sm text-gray-600 mb-2">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2">{title}</h2>
+          <p className="text-xs sm:text-sm text-gray-600 mb-2">
             <strong>Due:</strong> {dueDate}
           </p>
           <span
-            className={`inline-block px-3 py-1 text-sm font-medium rounded-full mb-3 ${
-              priorityColors[priority] || "bg-gray-200 text-gray-700"
-            }`}
+            className={`inline-block px-3 py-1 text-xs sm:text-sm font-medium rounded-full mb-3 
+              ${priorityColors[priority] || "bg-gray-200 text-gray-700"}`}
           >
             {priority} Priority
           </span>
         </>
       )}
 
-      <div className="flex flex-col sm:flex-row justify-center gap-2 mt-2">
+      {/* Buttons row */}
+      <div className="flex flex-col sm:flex-row justify-center gap-2 mt-3">
         <button
           onClick={onToggle}
-          className={`px-4 py-2 rounded-lg text-white transition ${
-            completed
-              ? "bg-yellow-500 hover:bg-yellow-600"
-              : "bg-blue-600 hover:bg-blue-700"
-          }`}
+          className={`px-4 py-2 rounded-lg text-white text-sm sm:text-base transition focus:ring-2 focus:ring-offset-1
+            ${completed ? "bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-400" 
+                        : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-400"}`}
         >
           {completed ? "Undo" : "Complete"}
         </button>
@@ -86,13 +84,13 @@ function TaskCard({ title, dueDate, priority, completed, onToggle, onUpdate, onD
           <>
             <button
               onClick={handleSave}
-              className="px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-green-600 transition"
+              className="px-4 py-2 rounded-lg bg-green-500 text-white text-sm sm:text-base hover:bg-green-600 transition focus:ring-2 focus:ring-green-400 focus:ring-offset-1"
             >
               Save
             </button>
             <button
               onClick={handleCancel}
-              className="px-4 py-2 rounded-lg bg-gray-400 text-white hover:bg-gray-500 transition"
+              className="px-4 py-2 rounded-lg bg-gray-400 text-white text-sm sm:text-base hover:bg-gray-500 transition focus:ring-2 focus:ring-gray-300 focus:ring-offset-1"
             >
               Cancel
             </button>
@@ -101,13 +99,13 @@ function TaskCard({ title, dueDate, priority, completed, onToggle, onUpdate, onD
           <>
             <button
               onClick={() => setIsEditing(true)}
-              className="px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-green-600 transition"
+              className="px-4 py-2 rounded-lg bg-green-500 text-white text-sm sm:text-base hover:bg-green-600 transition focus:ring-2 focus:ring-green-400 focus:ring-offset-1"
             >
               Edit
             </button>
             <button
               onClick={onDelete}
-              className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+              className="px-4 py-2 rounded-lg bg-red-500 text-white text-sm sm:text-base hover:bg-red-600 transition focus:ring-2 focus:ring-red-400 focus:ring-offset-1"
             >
               Delete
             </button>

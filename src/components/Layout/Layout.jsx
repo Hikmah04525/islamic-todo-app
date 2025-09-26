@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../Header"; // ✅ use your existing header
+import Header from "../Header";
 import Footer from "./Footer";
 
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow pt-20">{/* pt-20 for fixed nav spacing */}
+      <main className="flex-1 pt-24 px-4 sm:px-6 lg:px-8">
         {children}
       </main>
       <Footer />

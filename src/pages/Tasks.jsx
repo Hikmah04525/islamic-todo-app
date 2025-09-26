@@ -16,7 +16,6 @@ function Tasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  // Toggle complete/undo
   const toggleTask = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -25,9 +24,8 @@ function Tasks() {
     );
   };
 
-  // Add a new task
   const addTask = () => {
-    if (newTitle.trim() === "" || newDate.trim() === "") return;
+    if (!newTitle.trim() || !newDate.trim()) return;
 
     const newTask = {
       id: Date.now(),
@@ -43,39 +41,43 @@ function Tasks() {
     setNewPriority("Low");
   };
 
-  // Delete a task
-  const handleDelete = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const updateTask = (id, updatedTask) => {
+    setTasks(tasks.map((t) => (t.id === id ? { ...t, ...updatedTask } : t)));
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((t) => t.id !== id));
   };
 
   const allCompleted = tasks.length > 0 && tasks.every((task) => task.completed);
 
   return (
-    <div className="min-h-screen max-w-3xl mx-auto p-6 flex flex-col justify-center">
-      <h1 className="text-3xl font-bold text-center mb-6">My Tasks</h1>
+    <div className="min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 py-8 overflow-auto">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-green-700">
+        My Tasks
+      </h1>
 
       <Ayah />
 
-      {/* Add new task form */}
-      <div className="flex gap-3 justify-center my-6 flex-wrap">
+      {/* Add Task Form */}
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center my-6">
         <input
           type="text"
           placeholder="Task title"
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 w-1/2 focus:ring-2 focus:ring-green-500 outline-none"
+          className="w-full sm:w-1/3 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         <input
-          type="text"
-          placeholder="Due date"
+          type="date"
           value={newDate}
           onChange={(e) => setNewDate(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 w-1/3 focus:ring-2 focus:ring-green-500 outline-none"
+          className="w-full sm:w-1/4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         <select
           value={newPriority}
           onChange={(e) => setNewPriority(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500 outline-none"
+          className="w-full sm:w-1/5 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
         >
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
@@ -83,25 +85,18 @@ function Tasks() {
         </select>
         <button
           onClick={addTask}
-          className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg transition"
+          className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg transition focus:ring-2 focus:ring-green-400"
         >
           Add Task
         </button>
       </div>
 
-      {/* Task list */}
-      <div className="flex flex-col gap-4 mt-6">
-        {tasks.length === 0 ? (
-          <p className="text-gray-500 text-lg text-center">
-            No tasks yet. Add your first one!
-          </p>
-        ) : (
-          tasks
+      {/* Task List */}
+      {tasks.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {tasks
             .slice()
-            .sort((a, b) => {
-              const order = { High: 3, Medium: 2, Low: 1 };
-              return order[b.priority] - order[a.priority];
-            })
+            .sort((a, b) => ({ Low:1, Medium:2, High:3 }[b.priority] - { Low:1, Medium:2, High:3 }[a.priority]))
             .map((task) => (
               <TaskCard
                 key={task.id}
@@ -110,18 +105,16 @@ function Tasks() {
                 priority={task.priority}
                 completed={task.completed}
                 onToggle={() => toggleTask(task.id)}
-                onUpdate={(updatedTask) =>
-                  setTasks(
-                    tasks.map((t) =>
-                      t.id === task.id ? { ...t, ...updatedTask } : t
-                    )
-                  )
-                }
-                onDelete={() => handleDelete(task.id)}
+                onUpdate={(updatedTask) => updateTask(task.id, updatedTask)}
+                onDelete={() => deleteTask(task.id)}
               />
-            ))
-        )}
-      </div>
+            ))}
+        </div>
+      ) : (
+        <p className="text-gray-500 text-lg text-center mt-4">
+          No tasks yet. Add your first one!
+        </p>
+      )}
 
       {allCompleted && (
         <p className="mt-6 text-lg text-green-600 text-center font-medium">

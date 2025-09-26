@@ -1,9 +1,11 @@
 function About() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-2xl mx-auto text-center p-8 bg-white rounded-xl shadow-md mb-12">
-        <h1 className="text-3xl font-bold text-green-700 mb-4">About This App</h1>
-        <p className="text-gray-600 leading-relaxed">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
+      <div className="w-full max-w-2xl mx-auto text-center p-6 sm:p-8 bg-white rounded-xl shadow-md">
+        <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold text-green-700 mb-4">
+          About This App
+        </h1>
+        <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
           This Islamic Task Manager was built to help you organize your daily
           goals while staying connected to the Qur’an Ayahs.
           Manage tasks, track progress, and stay motivated insha’Allah.
@@ -14,4 +16,3 @@ function About() {
 }
 
 export default About;
-
