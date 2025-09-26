@@ -1,32 +1,29 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
+import Layout from "./components/Layout/Layout";
 
 // Pages
 import Home from "./pages/Home";
 import Tasks from "./pages/Tasks";
-import Explore from "./pages/Explore";
+import Completed from "./pages/Completed";
+import Incompleted from "./pages/Incompleted";
 import About from "./pages/About";
+import Explore from "./pages/Explore";
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white text-gray-800">
-        {/* Navbar */}
-        <Header />
-
-        {/* Page content */}
-        <main className="container mx-auto px-4 py-8">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </main>
-      </div>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/completed" element={<Completed />} />
+          <Route path="/incompleted" element={<Incompleted />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/explore" element={<Explore />} />
+        </Routes>
+      </Layout>
     </Router>
   );
 }
 
 export default App;
-

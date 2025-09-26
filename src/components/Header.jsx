@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header() {
+  const baseClasses =
+    "text-lg font-semibold transition-colors duration-300";
+  const activeClasses =
+    "text-yellow-400 border-b-2 border-yellow-400 pb-1";
+  const inactiveClasses =
+    "text-white hover:text-yellow-400";
+
   return (
     <nav className="bg-green-800 text-white px-8 py-4 fixed top-0 left-0 w-full z-50 flex justify-between items-center shadow-md">
       {/* Logo */}
@@ -9,36 +16,65 @@ function Header() {
       {/* Navigation Links */}
       <ul className="flex gap-8">
         <li>
-          <Link
+          <NavLink
+            end
             to="/"
-            className="text-lg font-semibold hover:text-yellow-400 transition-colors duration-300"
+            className={({ isActive }) =>
+              `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`
+            }
           >
             Home
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to="/tasks"
-            className="text-lg font-semibold hover:text-yellow-400 transition-colors duration-300"
+            className={({ isActive }) =>
+              `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`
+            }
           >
             Tasks
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
+            to="/completed"
+            className={({ isActive }) =>
+              `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`
+            }
+          >
+            Completed
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/incompleted"
+            className={({ isActive }) =>
+              `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`
+            }
+          >
+            Incompleted
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/explore"
-            className="text-lg font-semibold hover:text-yellow-400 transition-colors duration-300"
+            className={({ isActive }) =>
+              `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`
+            }
           >
             Explore
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to="/about"
-            className="text-lg font-semibold hover:text-yellow-400 transition-colors duration-300"
+            className={({ isActive }) =>
+              `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`
+            }
           >
             About
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </nav>
