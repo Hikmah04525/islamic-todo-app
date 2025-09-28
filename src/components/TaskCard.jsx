@@ -26,9 +26,9 @@ function TaskCard({ title, dueDate, priority, completed, onToggle, onUpdate, onD
 
   return (
     <div
-      className={`rounded-xl p-5 shadow-md transition text-center flex flex-col justify-between
-        ${completed ? "bg-green-100 line-through text-gray-500" : "bg-white hover:shadow-lg"}
-      `}
+      className={`rounded-xl p-5 shadow-md flex flex-col justify-between transition-all duration-300 ease-in-out
+    transform hover:scale-105 hover:shadow-lg
+    ${completed ? "bg-green-100 line-through text-gray-500" : "bg-white"}`}
     >
       {isEditing ? (
         <div className="flex flex-col gap-2">
@@ -56,12 +56,14 @@ function TaskCard({ title, dueDate, priority, completed, onToggle, onUpdate, onD
         </div>
       ) : (
         <>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2">{title}</h2>
+          <h2 className={`text-lg sm:text-xl font-semibold mb-2 transition-colors duration-300`}>
+            {title}
+          </h2>
           <p className="text-xs sm:text-sm text-gray-600 mb-2">
             <strong>Due:</strong> {dueDate}
           </p>
           <span
-            className={`inline-block px-3 py-1 text-xs sm:text-sm font-medium rounded-full mb-3 
+            className={`inline-block px-3 py-1 text-xs sm:text-sm font-medium rounded-full mb-3 transition-colors duration-300
               ${priorityColors[priority] || "bg-gray-200 text-gray-700"}`}
           >
             {priority} Priority
@@ -73,9 +75,9 @@ function TaskCard({ title, dueDate, priority, completed, onToggle, onUpdate, onD
       <div className="flex flex-col sm:flex-row justify-center gap-2 mt-3">
         <button
           onClick={onToggle}
-          className={`px-4 py-2 rounded-lg text-white text-sm sm:text-base transition focus:ring-2 focus:ring-offset-1
-            ${completed ? "bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-400" 
-                        : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-400"}`}
+          className={`px-4 py-2 rounded-lg text-white text-sm sm:text-base transition-transform duration-200 ease-in-out
+            ${completed ? "bg-yellow-500 hover:bg-yellow-600 active:scale-95 focus:ring-yellow-400" 
+                        : "bg-blue-600 hover:bg-blue-700 active:scale-95 focus:ring-blue-400"}`}
         >
           {completed ? "Undo" : "Complete"}
         </button>
@@ -84,13 +86,13 @@ function TaskCard({ title, dueDate, priority, completed, onToggle, onUpdate, onD
           <>
             <button
               onClick={handleSave}
-              className="px-4 py-2 rounded-lg bg-green-500 text-white text-sm sm:text-base hover:bg-green-600 transition focus:ring-2 focus:ring-green-400 focus:ring-offset-1"
+              className="px-4 py-2 rounded-lg bg-green-500 text-white text-sm sm:text-base hover:bg-green-600 transition-transform duration-200 ease-in-out focus:ring-2 focus:ring-green-400"
             >
               Save
             </button>
             <button
               onClick={handleCancel}
-              className="px-4 py-2 rounded-lg bg-gray-400 text-white text-sm sm:text-base hover:bg-gray-500 transition focus:ring-2 focus:ring-gray-300 focus:ring-offset-1"
+              className="px-4 py-2 rounded-lg bg-gray-400 text-white text-sm sm:text-base hover:bg-gray-500 transition-transform duration-200 ease-in-out focus:ring-2 focus:ring-gray-300"
             >
               Cancel
             </button>
@@ -99,13 +101,13 @@ function TaskCard({ title, dueDate, priority, completed, onToggle, onUpdate, onD
           <>
             <button
               onClick={() => setIsEditing(true)}
-              className="px-4 py-2 rounded-lg bg-green-500 text-white text-sm sm:text-base hover:bg-green-600 transition focus:ring-2 focus:ring-green-400 focus:ring-offset-1"
+              className="px-4 py-2 rounded-lg bg-green-500 text-white text-sm sm:text-base hover:bg-green-600 transition-transform duration-200 ease-in-out focus:ring-2 focus:ring-green-400"
             >
               Edit
             </button>
             <button
               onClick={onDelete}
-              className="px-4 py-2 rounded-lg bg-red-500 text-white text-sm sm:text-base hover:bg-red-600 transition focus:ring-2 focus:ring-red-400 focus:ring-offset-1"
+              className="px-4 py-2 rounded-lg bg-red-500 text-white text-sm sm:text-base hover:bg-red-600 transition-transform duration-200 ease-in-out focus:ring-2 focus:ring-red-400"
             >
               Delete
             </button>
