@@ -70,7 +70,7 @@ function Tasks() {
 
 
   return (
-    <div className="min-h-screen flex flex-col px-4 sm:px-6 lg:px-8 py-8 overflow-auto">
+    <div className="px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-green-700 transition-transform duration-200 hover:scale-105">
         My Tasks
       </h1>
@@ -117,7 +117,7 @@ function Tasks() {
             <select
               value={newPriority}
               onChange={(e) => setNewPriority(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-green-500"
             >
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
@@ -147,7 +147,7 @@ function Tasks() {
 
       {/* Task List */}
       {tasks.length > 0 ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+        <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
           {tasks
             .slice()
             .sort((a, b) => {
