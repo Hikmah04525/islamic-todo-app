@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TaskCard from "../components/TaskCard";
-import Ayah from "../components/Ayah";
+
 import useLocalStorage from "../hooks/useLocalStorage";
 import confetti from "canvas-confetti";
 
@@ -75,7 +75,7 @@ function Tasks() {
         My Tasks
       </h1>
 
-      <Ayah />
+     
 
       {/* Add Task Button */}
       <div className="flex justify-center my-6">

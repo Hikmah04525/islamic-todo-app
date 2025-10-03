@@ -4,14 +4,14 @@ function Ayah() {
   const [ayah, setAyah] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // fetch random ayah
-  const fetchRandomAyah = async () => {
+  // fetch  ayah
+  const fetchAyah = async () => {
     setLoading(true);
     try {
-      // quran has 6236 ayahs, pick one randomly
-      const randomAyah = Math.floor(Math.random() * 6236) + 1;
+      // quran has 6236 ayahs, pick one 
+      const getAyah = Math.floor(Math.random() * 6236) + 1;
         const response = await fetch(
-        `https://api.alquran.cloud/v1/ayah/${randomAyah}`
+        `https://api.alquran.cloud/v1/ayah/${getAyah}`
         );
         const data = await response.json();
 
@@ -28,7 +28,7 @@ function Ayah() {
 
   // load first ayah on mount
     useEffect(() => {
-    fetchRandomAyah();
+    fetchAyah();
     }, []);
 
     return (
@@ -44,10 +44,10 @@ function Ayah() {
         — {ayah.surah.englishName} (Surah {ayah.surah.number})
       </p>
       <button
-        onClick={fetchRandomAyah}
+        onClick={fetchAyah}
         className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition duration-300"
       >
-        Get Random Ayah
+        Get  Ayah
       </button>
     </>
   )}
