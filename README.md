@@ -19,7 +19,8 @@ It’s a simple React + Vite app that helps organize tasks with a clean and reus
 
 ---
 ## 🌐 Live Demo
-👉 [View the App Here](https://nsda-islamic-todo-app.vercel.app/)
+👉 [View the App Here](https://islamic-todo-app.vercel.app/)
+
 
 ## 🛠️ Tech Stack
 - React + Vite ⚛️  
