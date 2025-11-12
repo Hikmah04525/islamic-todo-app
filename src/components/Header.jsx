@@ -13,8 +13,8 @@ function Header() {
     { to: "/tasks", label: "Tasks" },
     { to: "/completed", label: "Completed" },
     { to: "/incompleted", label: "Incompleted" },
-    { to: "/explore", label: "Explore" },
     { to: "/about", label: "About" },
+    { to: "/explore", label: "Explore" },
   ];
 
   return (
