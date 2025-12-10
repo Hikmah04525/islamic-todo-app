@@ -15,7 +15,8 @@ It’s a simple React + Vite app that helps organize tasks with a clean and reus
 - Responsive design for desktop & mobile  
 - Confetti 🎉 when marking tasks as complete  
 - Modal for adding tasks with smooth UI  
-- Hover effects & polished styling with TailwindCSS  
+- Hover effects & polished styling with TailwindCSS
+- fully responsive
 
 ---
 ## 🌐 Live Demo
