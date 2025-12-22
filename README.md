@@ -1,7 +1,7 @@
 # 🕌 Islamic To-Do App
 
 This project is part of the NSDA React Bootcamp.  
-It’s a simple React + Vite app that helps organize tasks with a clean and reusable design.  
+It’s a simple React + Vite app that helps create and organize tasks with a clean and reusable design.  
 
 
 
