@@ -8,14 +8,13 @@ It’s a simple React + Vite app that helps create and organize tasks with a cle
 ## 🚀 Features
 - Homepage with welcoming message  
 - Reusable Header with navigation  
-- TaskCard component for displaying tasks  
-- Task list rendered dynamically using `.map()`  
+- TaskCard component for displaying tasks   
 - Completed & Incomplete task pages  
 - LocalStorage integration (tasks stay saved after reload)  
 - Responsive design for desktop & mobile  
 - Confetti 🎉 when marking tasks as complete  
 - Modal for adding tasks with smooth UI  
-- Hover effects & polished styling with TailwindCSS
+- polished styling with TailwindCSS
 - fully responsive
 
 ---
